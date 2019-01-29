@@ -1,3 +1,27 @@
+/*
+Original work Copyright (c) 2014 beiliubei
+Modified work Copyright (c) 2019 Isaias Arellano - isaias.arellano.delgado@gmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+The Software shall be used for Good, not Evil.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ */
 package com.google.code.maven_replacer_plugin;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
@@ -306,6 +330,10 @@ public class ReplacerMojo extends AbstractMojo {
 	 * @parameter 
 	 */
 	private String xpath;
+
+	private String jsonpath;
+
+	private String jsontype;
 	
 	/**
 	 * File encoding used when reading and writing files. 
@@ -506,7 +534,7 @@ public class ReplacerMojo extends AbstractMojo {
 		}
 
 		if (tokenValueMap == null) {
-			Replacement replacement = new Replacement(fileUtils, token, value, unescape, xpath, encoding);
+			Replacement replacement = new Replacement(fileUtils, token, value, unescape, xpath, encoding, jsonpath, jsontype);
 			replacement.setEncoding(encoding);
 			replacement.setTokenFile(tokenFile);
 			replacement.setValueFile(valueFile);
@@ -706,6 +734,22 @@ public class ReplacerMojo extends AbstractMojo {
 
 	public void setXpath(String xpath) {
 		this.xpath = xpath;
+	}
+
+	public void setJsonpath(String jsonpath) {
+		this.jsonpath = jsonpath;
+	}
+
+	public String getJsonpath() {
+		return this.jsonpath;
+	}
+
+	public void setJsontype(String jsontype) {
+		this.jsontype = jsontype;
+	}
+
+	public String getJsontype() {
+		return this.jsontype;
 	}
 
 	public void setEncoding(String encoding) {
